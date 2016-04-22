@@ -49,7 +49,9 @@ blacklist = (
     'meu', 'por', 'dos', 'eu', 'com', 'como', 'das', 'nome', 'as', 'sua',
     'esse', 'este', 'seu', 'nas', 'deu', 'esta', 'tem', 'também', 'sra',
     'pelas', 'nos', 'mais', 'nesta', 'foi', 'me', 'meus',
-    'há', 'aqui', 'ano', 'vou', 'ter')
+    'há', 'aqui', 'ano', 'vou', 'ter', 'tenho', 'sras', 'são',
+    'neste', 'nós', 'nem', 'ser', 'está', 'nossa', 'isso', 'já', 'muito',
+    'mim', 'fazer', 'aquele', 'às', 'você', 'digo', 'vai', 'estamos')
 word_cloud = WordCloud(width=1080, height=720,
                        stopwords=blacklist, color_func=brazil_colors,
                        max_words=100)
