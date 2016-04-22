@@ -68,13 +68,16 @@ blacklist = (
     'deste', 'quero', 'desta', 'dia', 'estão', 'todo', 'grande', 'toda',
     'essa', 'seus', 'pernambuco', 'dias', 'tudo', 'maioria', 'santa',
     'catarina', 'bahia', 'favor', 'hoje', 'sem', 'querem', 'minhas', 'região',
-    'votando', 'cada', 'pará', 'só', 'exa', 'mato', 'grosso', 'goiás')
+    'votando', 'cada', 'pará', 'só', 'exa', 'mato', 'grosso', 'goiás',
+    'querida', 'querido', 'muita', 'todas', 'sempre', 'nosso', 'todos',
+    'Deputados', ' Casa', 'dizer', 'melhor', 'votar', 'fim',
+    'mineiro', 'primeiro', 'temos')
 
 # Here we create de WordCloud object, defining its dimensions, the stopswords,
 # the coloring function and how many words we want
 word_cloud = WordCloud(width=1080, height=720,
                        stopwords=blacklist, color_func=brazil_colors,
-                       max_words=150, font_path=FONT)
+                       max_words=200, font_path=FONT)
 
 # Now we use that object to create the word clouds and save as images
 word_cloud.generate(votes_yes).to_file('yes.png')
@@ -82,3 +85,4 @@ word_cloud.generate(votes_no).to_file('no.png')
 word_cloud.generate(votes_men).to_file('men.png')
 word_cloud.generate(votes_women).to_file('women.png')
 word_cloud.generate(votes_all).to_file('all.png')
+

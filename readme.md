@@ -1,7 +1,7 @@
 # Impeachment cloud
 _English below_
 
-A nossa câmara dos deputados aprovou recentemente a abertura do processo de impeachment de Dilma Rousseff. Durante a votação, os congressistas justificaram ou dedicaram seus votos das formas mais diversas. Esse projeto constroi word clouds - desenhos onde as palavras mais frequentes em um texto aparecem em tamanho maior - com base nos discursos dos deputados. As imagens estão logo a baixo.
+A nossa câmara dos deputados aprovou recentemente a abertura do processo de impeachment de Dilma Rousseff. Durante a votação, os congressistas justificaram ou dedicaram seus votos das formas mais diversas. Esse projeto constroi word clouds - desenhos onde as palavras mais frequentes em um texto aparecem em tamanho maior - com base nos discursos dos deputados. As imagens estão logo a baixo e foram consideradas as 200 palavras mais frequentes.
 
 _English_
 Brazil is in the middle of a political crisis. You can get a nice overview of the situation in [this amazing video by Vlogbrothers](https://www.youtube.com/watch?v=rFKsY5O7oYs).
