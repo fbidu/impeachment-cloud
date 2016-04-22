@@ -27,8 +27,13 @@ votes_yes = ' '.join(votes_yes)
 votes_no = ' '.join(votes_no)
 votes_men = ' '.join(votes_men)
 votes_women = ' '.join(votes_women)
-print(votes_men)
-WordCloud(width=1080, height=720).generate(votes_yes).to_file('yes.png')
-WordCloud(width=1080, height=720).generate(votes_no).to_file('no.png')
-WordCloud(width=1080, height=720).generate(votes_men).to_file('men.png')
-WordCloud(width=1080, height=720).generate(votes_women).to_file('women.png')
+
+blacklist = (
+    'do', 'da', 'no', 'na', 'de', 'que', 'se', 'os', 'ao', 'aos'
+    'um', 'uma', 'deputado', 'sr', 'em', 'presidente', 'pelo', 'pela', 'para',
+    'meu')
+word_cloud = WordCloud(width=1080, height=720, stopwords=blacklist)
+word_cloud.generate(votes_yes).to_file('yes.png')
+word_cloud.generate(votes_no).to_file('no.png')
+word_cloud.generate(votes_men).to_file('men.png')
+word_cloud.generate(votes_women).to_file('women.png')
