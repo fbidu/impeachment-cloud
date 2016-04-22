@@ -11,6 +11,7 @@ current_dir = path.dirname(__file__)
 # Evaluating the path for the votes file and the Brazil's flag
 VOTES_FILE = path.join(current_dir, 'votes.csv')
 BRAZIL_FLAG = path.join(current_dir, "Flag_of_Brazil.png")
+FONT = path.join(current_dir, "NotoSerif-Regular.ttf")
 
 # Reading the votes as a CSV object
 votes = csv.reader(open(VOTES_FILE), delimiter=',', quotechar='"')
@@ -63,13 +64,16 @@ blacklist = (
     'neste', 'nós', 'nem', 'ser', 'está', 'nossa', 'isso', 'já', 'muito',
     'mim', 'fazer', 'aquele', 'às', 'você', 'digo', 'vai', 'estamos',
     'pelos', 'porque', 'minas', 'gerais', 'paulo', 'vamos', 'ele', 'ela',
-    'quem')
+    'quem', 'rio', 'janeiro', 'sul', 'paraná', 'quando', 'bem', 'ano', 'anos',
+    'deste', 'quero', 'desta', 'dia', 'estão', 'todo', 'grande', 'toda',
+    'essa', 'seus', 'pernambuco', 'dias', 'tudo', 'maioria', 'santa',
+    'catarina', 'bahia', 'favor', 'hoje', 'sem', 'querem', 'minhas')
 
 # Here we create de WordCloud object, defining its dimensions, the stopswords,
 # the coloring function and how many words we want
 word_cloud = WordCloud(width=1080, height=720,
                        stopwords=blacklist, color_func=brazil_colors,
-                       max_words=100)
+                       max_words=150, font_path=FONT)
 
 # Now we use that object to create the word clouds and save as images
 word_cloud.generate(votes_yes).to_file('yes.png')
