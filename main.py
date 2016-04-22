@@ -67,7 +67,8 @@ blacklist = (
     'quem', 'rio', 'janeiro', 'sul', 'paraná', 'quando', 'bem', 'ano', 'anos',
     'deste', 'quero', 'desta', 'dia', 'estão', 'todo', 'grande', 'toda',
     'essa', 'seus', 'pernambuco', 'dias', 'tudo', 'maioria', 'santa',
-    'catarina', 'bahia', 'favor', 'hoje', 'sem', 'querem', 'minhas')
+    'catarina', 'bahia', 'favor', 'hoje', 'sem', 'querem', 'minhas', 'região',
+    'votando', 'cada', 'pará', 'só', 'exa', 'mato', 'grosso', 'goiás')
 
 # Here we create de WordCloud object, defining its dimensions, the stopswords,
 # the coloring function and how many words we want
