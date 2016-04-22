@@ -7,3 +7,18 @@ Recently, our Congress voted to impeach our president. When the deputies casted 
 
 
 This is a programmer's attempt to make any sense out of this mess.
+
+## Todos os Votos (all votes)
+![todos os votos](/all.png?raw=true)
+
+## Votos pelo impeachment (votes pro-impeachment)
+![](/yes.png?raw=true)
+
+## Votos contra o impeachment (votes pro-government)
+![](/no.png?raw=true)
+
+## Votos das mulheres (Women's votes)
+![](/women.png?raw=true)
+
+## Votos dos homens (Men's votes)
+![](/men.png?raw=true)
