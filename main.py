@@ -1,9 +1,15 @@
 #-*- encoding: utf-8 -*-
 from os import path
 from wordcloud import WordCloud, ImageColorGenerator
-from csv import reader
+from csv import reader, writer
 from numpy import array
 from PIL import Image
+
+
+def write_frequencies(frequencies, file_path):
+    with open(file_path, 'w', newline='') as file:
+        frequency_writer = writer(file, delimiter=',')
+        frequency_writer.writerows(frequencies)
 
 
 def main():
@@ -83,10 +89,19 @@ def main():
 
     # Now we use that object to create the word clouds and save as images
     word_cloud.generate(votes_yes).to_file('yes.png')
+    write_frequencies(word_cloud.words_, path.join(current_dir, 'yes.csv'))
+
     word_cloud.generate(votes_no).to_file('no.png')
+    write_frequencies(word_cloud.words_, path.join(current_dir, 'no.csv'))
+
     word_cloud.generate(votes_men).to_file('men.png')
+    write_frequencies(word_cloud.words_, path.join(current_dir, 'men.csv'))
+
     word_cloud.generate(votes_women).to_file('women.png')
+    write_frequencies(word_cloud.words_, path.join(current_dir, 'women.csv'))
+
     word_cloud.generate(votes_all).to_file('all.png')
+    write_frequencies(word_cloud.words_, path.join(current_dir, 'all.csv'))
 
 
 if __name__ == "__main__":
