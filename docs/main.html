@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>main.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>main.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span><span class="p">,</span> <span class="n">ImageColorGenerator</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Getting the current directory</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">current_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Evaluating the path for the votes file and the Brazil's flag</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">VOTES_FILE</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="s1">&#39;votes.csv&#39;</span><span class="p">)</span>
+<span class="n">BRAZIL_FLAG</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="s2">&quot;Flag_of_Brazil.png&quot;</span><span class="p">)</span>
+<span class="n">FONT</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="s2">&quot;NotoSerif-Regular.ttf&quot;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Reading the votes as a CSV object</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">votes</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">VOTES_FILE</span><span class="p">),</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Creating a coloring function based on the Brazilian flag</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">brazil_colors</span> <span class="o">=</span> <span class="n">ImageColorGenerator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">BRAZIL_FLAG</span><span class="p">)))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Initializing arrays to hold the votes</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">votes_all</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">votes_yes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">votes_no</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">votes_men</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">votes_women</span> <span class="o">=</span> <span class="p">[]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Looping through all the rows</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">votes</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>All votes get appended to the votes_all array</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">votes_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>Now we'll check if the deputy voted yes or no
+yes = impeach the president</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;sim&#39;</span><span class="p">:</span>
+        <span class="n">votes_yes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">votes_no</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>Then we'll check if the deputy was male or female</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;m&#39;</span><span class="p">:</span>
+        <span class="n">votes_men</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">votes_women</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <p>All the arrays get joined together in a string</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">votes_yes</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">votes_yes</span><span class="p">)</span>
+<span class="n">votes_no</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">votes_no</span><span class="p">)</span>
+<span class="n">votes_men</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">votes_men</span><span class="p">)</span>
+<span class="n">votes_women</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">votes_women</span><span class="p">)</span>
+<span class="n">votes_all</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">votes_all</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>This is a list of the words we don't want in the word clouds</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">blacklist</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;voto&#39;</span><span class="p">,</span> <span class="s1">&#39;srs&#39;</span><span class="p">,</span> <span class="s1">&#39;mas&#39;</span><span class="p">,</span> <span class="s1">&#39;minha&#39;</span><span class="p">,</span> <span class="s1">&#39;tão&#39;</span><span class="p">,</span> <span class="s1">&#39;portanto&#39;</span><span class="p">,</span> <span class="s1">&#39;sou&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;do&#39;</span><span class="p">,</span> <span class="s1">&#39;da&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;na&#39;</span><span class="p">,</span> <span class="s1">&#39;de&#39;</span><span class="p">,</span> <span class="s1">&#39;que&#39;</span><span class="p">,</span> <span class="s1">&#39;se&#39;</span><span class="p">,</span> <span class="s1">&#39;os&#39;</span><span class="p">,</span> <span class="s1">&#39;ao&#39;</span><span class="p">,</span> <span class="s1">&#39;aos&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;um&#39;</span><span class="p">,</span> <span class="s1">&#39;uma&#39;</span><span class="p">,</span> <span class="s1">&#39;deputado&#39;</span><span class="p">,</span> <span class="s1">&#39;sr&#39;</span><span class="p">,</span> <span class="s1">&#39;em&#39;</span><span class="p">,</span> <span class="s1">&#39;presidente&#39;</span><span class="p">,</span> <span class="s1">&#39;pelo&#39;</span><span class="p">,</span> <span class="s1">&#39;pela&#39;</span><span class="p">,</span> <span class="s1">&#39;para&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;meu&#39;</span><span class="p">,</span> <span class="s1">&#39;por&#39;</span><span class="p">,</span> <span class="s1">&#39;dos&#39;</span><span class="p">,</span> <span class="s1">&#39;eu&#39;</span><span class="p">,</span> <span class="s1">&#39;com&#39;</span><span class="p">,</span> <span class="s1">&#39;como&#39;</span><span class="p">,</span> <span class="s1">&#39;das&#39;</span><span class="p">,</span> <span class="s1">&#39;nome&#39;</span><span class="p">,</span> <span class="s1">&#39;as&#39;</span><span class="p">,</span> <span class="s1">&#39;sua&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;esse&#39;</span><span class="p">,</span> <span class="s1">&#39;este&#39;</span><span class="p">,</span> <span class="s1">&#39;seu&#39;</span><span class="p">,</span> <span class="s1">&#39;nas&#39;</span><span class="p">,</span> <span class="s1">&#39;deu&#39;</span><span class="p">,</span> <span class="s1">&#39;esta&#39;</span><span class="p">,</span> <span class="s1">&#39;tem&#39;</span><span class="p">,</span> <span class="s1">&#39;também&#39;</span><span class="p">,</span> <span class="s1">&#39;sra&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pelas&#39;</span><span class="p">,</span> <span class="s1">&#39;nos&#39;</span><span class="p">,</span> <span class="s1">&#39;mais&#39;</span><span class="p">,</span> <span class="s1">&#39;nesta&#39;</span><span class="p">,</span> <span class="s1">&#39;foi&#39;</span><span class="p">,</span> <span class="s1">&#39;me&#39;</span><span class="p">,</span> <span class="s1">&#39;meus&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;há&#39;</span><span class="p">,</span> <span class="s1">&#39;aqui&#39;</span><span class="p">,</span> <span class="s1">&#39;ano&#39;</span><span class="p">,</span> <span class="s1">&#39;vou&#39;</span><span class="p">,</span> <span class="s1">&#39;ter&#39;</span><span class="p">,</span> <span class="s1">&#39;tenho&#39;</span><span class="p">,</span> <span class="s1">&#39;sras&#39;</span><span class="p">,</span> <span class="s1">&#39;são&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;neste&#39;</span><span class="p">,</span> <span class="s1">&#39;nós&#39;</span><span class="p">,</span> <span class="s1">&#39;nem&#39;</span><span class="p">,</span> <span class="s1">&#39;ser&#39;</span><span class="p">,</span> <span class="s1">&#39;está&#39;</span><span class="p">,</span> <span class="s1">&#39;nossa&#39;</span><span class="p">,</span> <span class="s1">&#39;isso&#39;</span><span class="p">,</span> <span class="s1">&#39;já&#39;</span><span class="p">,</span> <span class="s1">&#39;muito&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;mim&#39;</span><span class="p">,</span> <span class="s1">&#39;fazer&#39;</span><span class="p">,</span> <span class="s1">&#39;aquele&#39;</span><span class="p">,</span> <span class="s1">&#39;às&#39;</span><span class="p">,</span> <span class="s1">&#39;você&#39;</span><span class="p">,</span> <span class="s1">&#39;digo&#39;</span><span class="p">,</span> <span class="s1">&#39;vai&#39;</span><span class="p">,</span> <span class="s1">&#39;estamos&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pelos&#39;</span><span class="p">,</span> <span class="s1">&#39;porque&#39;</span><span class="p">,</span> <span class="s1">&#39;minas&#39;</span><span class="p">,</span> <span class="s1">&#39;gerais&#39;</span><span class="p">,</span> <span class="s1">&#39;paulo&#39;</span><span class="p">,</span> <span class="s1">&#39;vamos&#39;</span><span class="p">,</span> <span class="s1">&#39;ele&#39;</span><span class="p">,</span> <span class="s1">&#39;ela&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;quem&#39;</span><span class="p">,</span> <span class="s1">&#39;rio&#39;</span><span class="p">,</span> <span class="s1">&#39;janeiro&#39;</span><span class="p">,</span> <span class="s1">&#39;sul&#39;</span><span class="p">,</span> <span class="s1">&#39;paraná&#39;</span><span class="p">,</span> <span class="s1">&#39;quando&#39;</span><span class="p">,</span> <span class="s1">&#39;bem&#39;</span><span class="p">,</span> <span class="s1">&#39;ano&#39;</span><span class="p">,</span> <span class="s1">&#39;anos&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;deste&#39;</span><span class="p">,</span> <span class="s1">&#39;quero&#39;</span><span class="p">,</span> <span class="s1">&#39;desta&#39;</span><span class="p">,</span> <span class="s1">&#39;dia&#39;</span><span class="p">,</span> <span class="s1">&#39;estão&#39;</span><span class="p">,</span> <span class="s1">&#39;todo&#39;</span><span class="p">,</span> <span class="s1">&#39;grande&#39;</span><span class="p">,</span> <span class="s1">&#39;toda&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;essa&#39;</span><span class="p">,</span> <span class="s1">&#39;seus&#39;</span><span class="p">,</span> <span class="s1">&#39;pernambuco&#39;</span><span class="p">,</span> <span class="s1">&#39;dias&#39;</span><span class="p">,</span> <span class="s1">&#39;tudo&#39;</span><span class="p">,</span> <span class="s1">&#39;maioria&#39;</span><span class="p">,</span> <span class="s1">&#39;santa&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;catarina&#39;</span><span class="p">,</span> <span class="s1">&#39;bahia&#39;</span><span class="p">,</span> <span class="s1">&#39;favor&#39;</span><span class="p">,</span> <span class="s1">&#39;hoje&#39;</span><span class="p">,</span> <span class="s1">&#39;sem&#39;</span><span class="p">,</span> <span class="s1">&#39;querem&#39;</span><span class="p">,</span> <span class="s1">&#39;minhas&#39;</span><span class="p">,</span> <span class="s1">&#39;região&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;votando&#39;</span><span class="p">,</span> <span class="s1">&#39;cada&#39;</span><span class="p">,</span> <span class="s1">&#39;pará&#39;</span><span class="p">,</span> <span class="s1">&#39;só&#39;</span><span class="p">,</span> <span class="s1">&#39;exa&#39;</span><span class="p">,</span> <span class="s1">&#39;mato&#39;</span><span class="p">,</span> <span class="s1">&#39;grosso&#39;</span><span class="p">,</span> <span class="s1">&#39;goiás&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;querida&#39;</span><span class="p">,</span> <span class="s1">&#39;querido&#39;</span><span class="p">,</span> <span class="s1">&#39;muita&#39;</span><span class="p">,</span> <span class="s1">&#39;todas&#39;</span><span class="p">,</span> <span class="s1">&#39;sempre&#39;</span><span class="p">,</span> <span class="s1">&#39;nosso&#39;</span><span class="p">,</span> <span class="s1">&#39;todos&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Deputados&#39;</span><span class="p">,</span> <span class="s1">&#39; Casa&#39;</span><span class="p">,</span> <span class="s1">&#39;dizer&#39;</span><span class="p">,</span> <span class="s1">&#39;melhor&#39;</span><span class="p">,</span> <span class="s1">&#39;votar&#39;</span><span class="p">,</span> <span class="s1">&#39;fim&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;mineiro&#39;</span><span class="p">,</span> <span class="s1">&#39;primeiro&#39;</span><span class="p">,</span> <span class="s1">&#39;temos&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      <p>Here we create de WordCloud object, defining its dimensions, the stopswords,
+the coloring function and how many words we want</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">word_cloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1080</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">720</span><span class="p">,</span>
+                       <span class="n">stopwords</span><span class="o">=</span><span class="n">blacklist</span><span class="p">,</span> <span class="n">color_func</span><span class="o">=</span><span class="n">brazil_colors</span><span class="p">,</span>
+                       <span class="n">max_words</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">font_path</span><span class="o">=</span><span class="n">FONT</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>Now we use that object to create the word clouds and save as images</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">word_cloud</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">votes_yes</span><span class="p">)</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s1">&#39;yes.png&#39;</span><span class="p">)</span>
+<span class="n">word_cloud</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">votes_no</span><span class="p">)</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s1">&#39;no.png&#39;</span><span class="p">)</span>
+<span class="n">word_cloud</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">votes_men</span><span class="p">)</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s1">&#39;men.png&#39;</span><span class="p">)</span>
+<span class="n">word_cloud</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">votes_women</span><span class="p">)</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s1">&#39;women.png&#39;</span><span class="p">)</span>
+<span class="n">word_cloud</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">votes_all</span><span class="p">)</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s1">&#39;all.png&#39;</span><span class="p">)</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
